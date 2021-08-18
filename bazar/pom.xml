@@ -8,12 +8,11 @@
 		<version>2.5.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.bazar-api</groupId>
+	<groupId>com.bazar.api</groupId>
 	<artifactId>bazar</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 	<name>bazar</name>
-	<description>Bazar de vendas de produtos</description>
+	<description>API product sale in Bazar</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -37,11 +36,6 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

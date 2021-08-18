@@ -1,5 +1,6 @@
 package com.bazar.api.bazar.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -10,4 +11,17 @@ public class Category {
     @Id
     private Long id;
 
+    @Column(nullable = false, length = 18)
+    private String name;
+
+    public Category () {
+    }
+
+    public Long getId () {
+        return id;
+    }
+
+    public String getName () {
+        return name;
+    }
 }

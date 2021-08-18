@@ -26,7 +26,7 @@ public class Product {
     e um fornecedor pode fornecer um ou muitos porodutos.
     */
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
-    @JoinColumn(name = "provider_id")
+    @JoinColumn(name = "provider_id", referencedColumnName = "id")
     private List<Provider> provider;
 
     /*
@@ -34,15 +34,15 @@ public class Product {
     e uma marca pode pertencer a um ou muitos produtos
     */
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
-    @JoinColumn(name = "brand_id")
-    private List<Brand>  brand;
+    @JoinColumn(name = "brand_id", referencedColumnName = "id")
+    private List<Brand> brand;
 
     /*
     um produto pertence a uma categoria
     e uma categoria pertence a um produto
     */
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="category_id")
+    @JoinColumn(name = "category_id")
     private Category category;
 
     public Product () {

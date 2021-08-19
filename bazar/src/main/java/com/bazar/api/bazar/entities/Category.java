@@ -1,4 +1,4 @@
-package com.bazar.api.bazar.entity;
+package com.bazar.api.bazar.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

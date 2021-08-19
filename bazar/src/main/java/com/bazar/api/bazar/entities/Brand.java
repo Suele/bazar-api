@@ -1,11 +1,11 @@
-package com.bazar.api.bazar.entity;
+package com.bazar.api.bazar.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
+import javax.persistence.*;
+import java.util.List;
+
+@Entity(name = "Brand")
 @Table(name = "brand")
 public class Brand {
     @Id
@@ -13,6 +13,10 @@ public class Brand {
 
     @Column(nullable = true, length = 15)
     private String name;
+
+    @ManyToMany(mappedBy = "brand")
+    @JsonIgnore
+    private List<Product> products;
 
     public Brand () {
     }
@@ -23,5 +27,9 @@ public class Brand {
 
     public String getName () {
         return name;
+    }
+
+    public List<Product> getProducts () {
+        return products;
     }
 }

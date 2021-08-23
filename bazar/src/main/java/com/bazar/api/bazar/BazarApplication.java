@@ -1,4 +1,4 @@
-package com.bazar.api;
+package com.bazar.api.bazar;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

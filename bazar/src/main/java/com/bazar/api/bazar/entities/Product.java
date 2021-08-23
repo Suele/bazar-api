@@ -1,4 +1,4 @@
-package com.bazar.api.entities;
+package com.bazar.api.bazar.entities;
 
 import javax.persistence.*;
 import java.util.List;

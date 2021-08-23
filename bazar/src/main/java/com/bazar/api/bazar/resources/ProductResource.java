@@ -23,4 +23,9 @@ public class ProductResource {
     public ResponseEntity getProductId (@PathVariable("id") Long id) {
         return ResponseEntity.ok().body(productService.getId(id));
     }
+
+    @GetMapping("/products/{productName}")
+    public ResponseEntity getProductName (@PathVariable("productName") String productName) {
+        return ResponseEntity.ok().body(productService.getAllProductName(productName));
+    }
 }

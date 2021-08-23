@@ -10,19 +10,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductService {
 
+    private final Pageable pageable = Pageable.unpaged();
     @Autowired
     private ProductRepository productRepository;
 
     public Product getId (Long id) {
-        if (id != null && productRepository.existsById(id) && productRepository.findById(id).isPresent()) {
-            return productRepository.findById(id).get();
-        }
-        throw new RuntimeException("id nao encontrado.");
+        return productRepository.findById(id).get();
     }
 
     public Page<Product> getAllProduct () {
-
-        Pageable pageable = Pageable.unpaged();
         return productRepository.findAll(pageable);
+    }
+
+    public Page<Product> getAllProductName (String productName) {
+        return productRepository.findAllProductName(productName, pageable);
     }
 }

@@ -1,7 +1,7 @@
-package com.bazar.api.bazar.resources;
+package com.bazar.api.resources;
 
-import com.bazar.api.bazar.entities.Product;
-import com.bazar.api.bazar.repositories.ProductRepository;
+import com.bazar.api.entities.Product;
+import com.bazar.api.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,7 +32,7 @@ public class ProductResource {
         if (productRepository.existsById(id)) {
             return ResponseEntity.ok().body(productRepository.findById(id));
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"O id do produto pesquisado não existe");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "O id do produto pesquisado não existe");
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.bazar.api.bazar.entities;
+package com.bazar.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

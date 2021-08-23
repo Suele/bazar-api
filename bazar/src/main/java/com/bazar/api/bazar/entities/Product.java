@@ -1,6 +1,4 @@
-package com.bazar.api.bazar.entities;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package com.bazar.api.entities;
 
 import javax.persistence.*;
 import java.util.List;

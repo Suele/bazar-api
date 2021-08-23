@@ -1,4 +1,4 @@
-package com.bazar.api.bazar;
+package com.bazar.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

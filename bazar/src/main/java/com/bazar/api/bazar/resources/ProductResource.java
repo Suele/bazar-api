@@ -4,10 +4,12 @@ import com.bazar.api.bazar.entities.Product;
 import com.bazar.api.bazar.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 public class ProductResource {
@@ -20,12 +22,18 @@ public class ProductResource {
     }
 
     @GetMapping("/product/{id}")
-    public ResponseEntity getProductId (@PathVariable("id") Long id) {
-        return ResponseEntity.ok().body(productService.getId(id));
+    public ResponseEntity<Product> getProductId (@PathVariable("id") Long id) {
+        try {
+            return ResponseEntity.ok().body(productService.getId(id));
+        } catch (RuntimeException ex) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Produto de id " + id + " nao foi encontrado.", ex
+            );
+        }
     }
 
     @GetMapping("/products/{productName}")
-    public ResponseEntity getProductName (@PathVariable("productName") String productName) {
+    public ResponseEntity<?> getProductName (@PathVariable("productName") String productName) {
         return ResponseEntity.ok().body(productService.getAllProductName(productName));
     }
 }

@@ -22,11 +22,11 @@ por diversos fornecedores e esses tendo diversas marcas, então será feita a di
 <p>Um quadro simples onde é mostrado o metodo HTTP utilizado, o identificador unico de recursos URI <br>
 e suas query strings que são utilizadas para filtrar dados entre outras funções.</p> 
 
-|Verbo HTTP|          URI             |                O que faz?          | 
-|----------|--------------------------|------------------------------------|
+|Verbo HTTP|          URI             |                O que faz?                                                                                          | Caso o recurso não seja encontrado
+|----------|--------------------------|--------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
 |   get   | /products?page=0&size=10  |<p>Mostra todos os produtos cadastrados,</br>page é número atual da página que se está,</br>size é a quantidade de item por página que será exibido.</br>Pode ser inserido mais informações.</p>|
-|   get   | /product/{id}             |<p>Busca um produto pelo id</p>      |
-|   get   |/products/{productName}    |<p>O parametro **productName** é o nome do produto que se deseja pesquisar.</p>|
+|   get   | /product/{**id**}         |<p>Retorna o produto que corresponde ao **id** </br>e o **status code 200**.</p>|<p>Retorna **status code 404** </br> **mensagem** e o **path** da URI.</p>
+|   get   |/products/{**productName**}|<p>O parametro **productName** é o nome do produto</br> que se deseja pesquisar.</p>|
 
 ###Arquitetura
 <p>

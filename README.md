@@ -30,6 +30,6 @@ as query strings ou parametros que são utilizadas para filtrar os dados entre o
 
 ###Arquitetura
 <p>
-A arquitetura utilizada é a monolítica, tendo os dados centralizados em apenas uma base de dados</br>
-e os recursos aclopados e dependentes um do outro. 
+A arquitetura utilizada é a monolítica, tendo os dados centralizados em apenas uma base de dados
+e os recursos aclopados e dependentes,</br>a escolha por essa arquitetura é porque o objetivo é manter a simplicidade e focar no aprendizado. 
 </p>

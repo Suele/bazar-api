@@ -7,6 +7,7 @@ import java.util.List;
 @Table(name = "product")
 public class Product {
     @Id
+    @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(nullable = false, length = 20)
@@ -50,6 +51,17 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    public Product (Long id, String name, Integer quantity, String product_type, String description, List<Provider> provider, List<Brand> brand, Category category) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.product_type = product_type;
+        this.description = description;
+        this.provider = provider;
+        this.brand = brand;
+        this.category = category;
+    }
+
     public Product () {
     }
 
@@ -85,4 +97,17 @@ public class Product {
         return category;
     }
 
+    @Override
+    public String toString () {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name +
+                ", quantity=" + quantity +
+                ", product_type='" + product_type +
+                ", description='" + description +
+                ", provider=" + provider +
+                ", brand=" + brand +
+                ", category=" + category +
+                '}';
+    }
 }

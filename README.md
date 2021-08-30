@@ -24,9 +24,9 @@ as query strings ou parametros que são utilizadas para filtrar os dados entre o
 
 | Método HTTP |          URI                |                O que faz?                                                                                          | Caso o recurso não seja encontrado
 |-------------|-----------------------------|--------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-|   get       | /products?page=0&size=10    | <p>Mostra todos os produtos cadastrados,</br>page é número atual da página que se está,</br>size é a quantidade de item por página que será exibido.</br>Pode ser inserido mais informações.</p>|
+|   get       | /products/?page=0&size=10   | <p>Mostra todos os produtos cadastrados,</br>page é número atual da página que se está,</br>size é a quantidade de item por página que será exibido.</p>|
 |   get       | /product/{**id**}           | <p>Retorna o produto que corresponde ao **id** </br>e o **status code 200**.</p>|<p>Retorna **status code 404** </br> **mensagem** e o **path** da URI.</p>
-|   get       | /products/{**productName**} | <p>O parametro **productName** é o nome do produto</br> que se deseja pesquisar.</p>|
+|   get       | /products/{**productName**} | <p>O parametro **productName** é o nome do produto</br> que se deseja pesquisar.</p>| <p>Retorna **status code 404**</br> **mensagem: Produto não encontrado.**</p>
 
 ###Arquitetura
 <p>

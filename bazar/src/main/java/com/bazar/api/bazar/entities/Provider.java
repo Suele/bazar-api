@@ -24,6 +24,13 @@ public class Provider {
     public Provider () {
     }
 
+    public Provider (Long id, String name, String cnpj, List<Product> products) {
+        this.id = id;
+        this.name = name;
+        this.cnpj = cnpj;
+        this.products = products;
+    }
+
     public Long getId () {
         return id;
     }

@@ -38,4 +38,8 @@ public class ProductService {
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado.");
     }
+
+    public Product getProduct(String productName){
+       return productRepository.findOneProduct(productName);
+    }
 }

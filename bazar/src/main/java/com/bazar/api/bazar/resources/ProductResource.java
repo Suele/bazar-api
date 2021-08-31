@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Min;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @Validated
 public class ProductResource {
     @Autowired
     private ProductService productService;
+
+    private List<Product> products = new ArrayList<>();
 
     @GetMapping("/products/")
     public ResponseEntity<Page<Product>> products () {
@@ -31,5 +35,13 @@ public class ProductResource {
     @GetMapping("/products/{productName}")
     public ResponseEntity<?> getProductName (@PathVariable(value = "productName") String productName) {
         return ResponseEntity.ok().body(productService.getAllProductName(productName));
+    }
+
+    @GetMapping("/cart/{productName}")
+    public ResponseEntity<List<Product>> addShoppingCart (@PathVariable(value = "productName") String productName) {
+
+        Product product = productService.getProduct(productName);
+        products.add(product);
+        return ResponseEntity.ok(products);
     }
 }

@@ -11,8 +11,7 @@ por diversos fornecedores e esses tendo diversas marcas, então será feita a di
 - [X] Mostrar todos os produtos disponíveis paginados.
 - [X] Buscar um produto pelo id.
 - [X] Buscar um produto pelo nome.
-- [ ] Buscar um produto pelo fornecedor.
-- [ ] Buscar um produto pela categoria.
+- [ ] Adicionar produtos no carrinho de compras.
 - [ ] Realizar uma venda no local.
 - [ ] Realizar uma venda para um cliente online.(aqui entra outras funcionalidades como login, 
 </br>adicionar e remover itens do carrinho de compras, ...).
@@ -27,6 +26,7 @@ as query strings ou parametros que são utilizadas para filtrar os dados entre o
 |   get       | /products/?page=0&size=10   | <p>Mostra todos os produtos cadastrados,</br>page é número atual da página que se está,</br>size é a quantidade de item por página que será exibido.</p>|
 |   get       | /product/{**id**}           | <p>Retorna o produto que corresponde ao **id** </br>e o **status code 200**.</p>|<p>Retorna **status code 404** </br> **mensagem** e o **path** da URI.</p>
 |   get       | /products/{**productName**} | <p>O parametro **productName** é o nome do produto</br> que se deseja pesquisar.</p>| <p>Retorna **status code 404**</br> **mensagem: Produto não encontrado.**</p>
+|   get       | /cart/{**productName**}     | <p>Adiciona um produto pelo nome no carrinho de compras</br>retorna **status code 200**</p> |
 
 ###Arquitetura
 <p>

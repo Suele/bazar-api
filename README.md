@@ -11,7 +11,8 @@ por diversos fornecedores e esses tendo diversas marcas, então será feita a di
 - [X] Mostrar todos os produtos disponíveis paginados.
 - [X] Buscar um produto pelo id.
 - [X] Buscar um produto pelo nome.
-- [ ] Adicionar produtos no carrinho de compras.
+- [X] Adicionar produtos no carrinho de compras.
+- [ ] Remove um produto do carrinho.
 - [ ] Realizar uma venda no local.
 - [ ] Realizar uma venda para um cliente online.(aqui entra outras funcionalidades como login, 
 </br>adicionar e remover itens do carrinho de compras, ...).

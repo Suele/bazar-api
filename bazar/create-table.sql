@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS product(
 	quantity smallint NOT NULL,
 	product_type VARCHAR(15) NOT NULL,
 	description VARCHAR(30) NOT NULL,
+	value_for_sale NUMERIC(7,2) NOT NULL,
 	category_id SERIAL REFERENCES category(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

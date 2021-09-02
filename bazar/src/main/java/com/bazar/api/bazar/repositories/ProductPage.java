@@ -8,6 +8,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 public interface ProductPage extends PagingAndSortingRepository<Product, Long> {
-    @Query(value = "SELECT m FROM Product m WHERE m.name LIKE :productName%")
+    @Query(value = "SELECT m FROM Product m WHERE m.name_product LIKE :productName%")
     Page<Product> findAllProductName (@Param("productName") String productName, Pageable pageable);
 }

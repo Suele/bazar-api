@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS address(
 ---produto----
 CREATE TABLE IF NOT EXISTS product(
 	id SERIAL PRIMARY KEY,
-	name VARCHAR(20) NOT NULL,
+	name_product VARCHAR(20) NOT NULL,
 	quantity smallint NOT NULL,
 	product_type VARCHAR(15) NOT NULL,
 	description VARCHAR(30) NOT NULL,

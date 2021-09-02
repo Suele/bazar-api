@@ -1,5 +1,6 @@
 package com.bazar.api.bazar.resources;
 
+import com.bazar.api.bazar.Carrinho;
 import com.bazar.api.bazar.entities.Product;
 import com.bazar.api.bazar.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Min;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @Validated
 public class ProductResource {
     @Autowired
     private ProductService productService;
-
-    private List<Product> products = new ArrayList<>();
+    private Carrinho carrinho = new Carrinho();
 
     @GetMapping("/products/")
     public ResponseEntity<Page<Product>> products () {
@@ -38,10 +36,11 @@ public class ProductResource {
     }
 
     @GetMapping("/cart/{productName}")
-    public ResponseEntity<List<Product>> addShoppingCart (@PathVariable(value = "productName") String productName) {
+    public ResponseEntity<String> addShoppingCart (@PathVariable(value = "productName") String productName) {
 
         Product product = productService.getProduct(productName);
-        products.add(product);
-        return ResponseEntity.ok(products);
+        carrinho.setProducts(product);
+
+        return ResponseEntity.ok().body(carrinho.toString());
     }
 }

@@ -1,7 +1,6 @@
 package com.bazar.api.bazar;
 
 import com.bazar.api.bazar.entities.Product;
-import com.fasterxml.jackson.annotation.JsonCreator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +38,10 @@ public class Carrinho {
 
     @Override
     public String toString () {
-        return this.products
-                + "Total: " + this.getTotal()
-                + " Quantidade de Itens: " + this.getQuantidadeDeItens();
+        return "Carrinho{" +
+                "products:" + this.products +
+                ",Itens:" + this.getQuantidadeDeItens() +
+                ",Total:" + this.getTotal() +
+                '}';
     }
 }

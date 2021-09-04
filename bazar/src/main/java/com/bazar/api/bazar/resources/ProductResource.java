@@ -36,11 +36,10 @@ public class ProductResource {
     }
 
     @GetMapping("/cart/{productName}")
-    public ResponseEntity<String> addShoppingCart (@PathVariable(value = "productName") String productName) {
-
+    public ResponseEntity<Carrinho> addShoppingCart (@PathVariable(value = "productName") String productName) {
         Product product = productService.getProduct(productName);
         carrinho.setProducts(product);
 
-        return ResponseEntity.ok().body(carrinho.toString());
+        return ResponseEntity.ok().body(carrinho);
     }
 }

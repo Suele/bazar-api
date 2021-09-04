@@ -1,7 +1,5 @@
 package com.bazar.api.bazar.entities;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -107,14 +105,17 @@ public class Product {
     }
 
     @Override
-    @JsonCreator
     public String toString () {
-        return
+        return "Product:{" +
                 "id:" + id +
-                        " name_product:" + name_product +
-                        " quantity:" + quantity +
-                        " product_type:" + product_type +
-                        " description:" + description +
-                        " value_for_sale:" + value_for_sale;
+                ", name_product:'" + name_product + '\'' +
+                ", quantity=:" + quantity +
+                ", product_type=:'" + product_type + '\'' +
+                ", description:'" + description + '\'' +
+                ", value_for_sale:" + value_for_sale +
+                ", provider:" + provider +
+                ", brand:" + brand +
+                ", category:" + category +
+                '}';
     }
 }

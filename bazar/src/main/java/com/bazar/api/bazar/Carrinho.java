@@ -4,6 +4,7 @@ import com.bazar.api.bazar.entities.Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 /*
  * Um carrinho de compras tem um ou muitos produtos
@@ -11,8 +12,10 @@ import java.util.List;
 
 public class Carrinho {
     private final List<Product> products;
+    private Product product;
 
     public Carrinho () {
+        this.product = new Product();
         this.products = new ArrayList<>();
     }
 
@@ -32,8 +35,12 @@ public class Carrinho {
         return this.products.stream().mapToDouble(Product::getValue_for_sale).sum();
     }
 
-    public Long getQuantidadeDeItens () {
-        return this.products.stream().count();
+    public Integer getQuantidadeDeItens () {
+        AtomicReference<Integer> quantity = new AtomicReference<>(0);
+        this.products.forEach(product -> {
+            quantity.updateAndGet(v -> v + product.getQuantity());
+        });
+        return quantity.get();
     }
 
     @Override

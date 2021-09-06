@@ -13,7 +13,7 @@ por diversos fornecedores e esses tendo diversas marcas, então será feita a di
 - [X] Buscar um produto pelo nome.
 - [X] Adicionar produtos no carrinho de compras.
 - [ ] Remove um produto do carrinho.
-- [ ] Realizar uma venda no local.
+- [ ] Realizar uma venda local.
 - [ ] Realizar uma venda para um cliente online.(aqui entra outras funcionalidades como login, 
 </br>adicionar e remover itens do carrinho de compras, ...).
   </br>**.... pensando em mais recursos.**
@@ -34,3 +34,14 @@ as query strings ou parametros que são utilizadas para filtrar os dados entre o
 A arquitetura utilizada é a monolítica, tendo os dados centralizados em apenas uma base de dados
 e os recursos aclopados e dependentes,</br>a escolha por essa arquitetura é porque o objetivo é manter a simplicidade e focar no aprendizado. 
 </p>
+
+###Modelo Entidade e Relacionamento do Banco de Dados
+<p>
+Estas são as entidades utilizadas ate o momento no projeto Bazar.
+</p>
+
+![diagram](bazar/database/01-image-db-bazar.png)
+
+
+
+

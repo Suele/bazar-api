@@ -37,17 +37,6 @@ CREATE TABLE IF NOT EXISTS address(
 	state VARCHAR(21) NOT NULL
 );
 
----produto----
-CREATE TABLE IF NOT EXISTS product(
-	id SERIAL PRIMARY KEY,
-	name_product VARCHAR(20) NOT NULL,
-	quantity smallint NOT NULL,
-	product_type VARCHAR(15) NOT NULL,
-	description VARCHAR(30) NOT NULL,
-	value_for_sale NUMERIC(7,2) NOT NULL,
-	category_id SERIAL REFERENCES category(id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
 ---fornecedor----
 CREATE TABLE IF NOT EXISTS provider(
 	id SERIAL PRIMARY KEY,
@@ -55,13 +44,31 @@ CREATE TABLE IF NOT EXISTS provider(
 	cnpj VARCHAR(14) NOT NULL
 );
 
+---produto----
+CREATE TABLE IF NOT EXISTS product(
+	product_id SERIAL PRIMARY KEY,
+	name_product VARCHAR(20) NOT NULL,
+	quantity smallint NOT NULL,
+	description VARCHAR(30) NOT NULL,
+	value_for_sale NUMERIC(7,2) NOT NULL,
+	category_id SERIAL REFERENCES category(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+--------Itens da venda---
+-------relacionamento entre produto e venda surge outra tabela-----
+------um produto pode estar em uma venda ou muitos------
+------uma venda pode ter um produto ou muitos produtos-----
+CREATE TABLE IF NOT EXISTS items_sale(
+items_sale_id SERIAL PRIMARY KEY,
+product_id REFERENCES product(product_id) ON DELETE CASCADE ON UPDATE CASCADE,
+sale_id REFERENCES sale(sale_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 ---venda----
 CREATE TABLE IF NOT EXISTS sale(
-	id SERIAL PRIMARY KEY,
-	sale_quantity SMALLINT NOT NULL,
+	sale_id SERIAL PRIMARY KEY,
 	sale_date date DEFAULT Now() NOT NULL,
-	client_id SERIAL REFERENCES client(id) ON DELETE CASCADE ON UPDATE CASCADE,
-	product_id SERIAL REFERENCES product(id) ON DELETE CASCADE ON UPDATE CASCADE
+	total NUMERIC(7,2) NOT NULL
 );
 
 ---relacionamento entre product e provider surge outra tabela---

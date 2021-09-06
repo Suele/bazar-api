@@ -32,7 +32,11 @@ public class Carrinho {
     }
 
     public Double getTotal () {
-        return this.products.stream().mapToDouble(Product::getValue_for_sale).sum();
+        AtomicReference<Double> total = new AtomicReference<>(0.0);
+        this.products.forEach(product -> {
+            total.updateAndGet(v -> v + product.getQuantity() * product.getValue_for_sale());
+        });
+        return total.get();
     }
 
     public Integer getQuantidadeDeItens () {

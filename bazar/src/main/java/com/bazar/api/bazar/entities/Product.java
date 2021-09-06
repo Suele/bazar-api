@@ -24,30 +24,16 @@ public class Product {
 
     @Column(nullable = false, precision = (7))
     private Double value_for_sale;
+
     /*
-        um produto pode pertencer a um ou muitos fornecedores
-        e um fornecedor pode fornecer um ou muitos porodutos.
-        */
+    um produto pode pertencer a um ou muitos fornecedores
+    e um fornecedor pode fornecer um ou muitos porodutos.
+    */
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,
             CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "product_provider", joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "provider_id"))
     private List<Provider> provider;
-
-    public Product () {
-    }
-
-    public Product (Long id, String name_product, Integer quantity, String product_type, String description, Double value_for_sale, List<Provider> provider, List<Brand> brand, Category category) {
-        this.id = id;
-        this.name_product = name_product;
-        this.quantity = quantity;
-        this.product_type = product_type;
-        this.description = description;
-        this.value_for_sale = value_for_sale;
-        this.provider = provider;
-        this.brand = brand;
-        this.category = category;
-    }
 
     /*
     um produto pode pertencer a um ou muitas marcas
@@ -67,6 +53,21 @@ public class Product {
             CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "category_id")
     private Category category;
+
+    public Product () {
+    }
+
+    public Product (Long id, String name_product, Integer quantity, String product_type, String description, Double value_for_sale, List<Provider> provider, List<Brand> brand, Category category) {
+        this.id = id;
+        this.name_product = name_product;
+        this.quantity = quantity;
+        this.product_type = product_type;
+        this.description = description;
+        this.value_for_sale = value_for_sale;
+        this.provider = provider;
+        this.brand = brand;
+        this.category = category;
+    }
 
     public Long getId () {
         return id;

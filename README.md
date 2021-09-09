@@ -28,6 +28,7 @@ as query strings ou parametros que são utilizadas para filtrar os dados entre o
 |   get       | /product/{**id**}           | <p>Retorna o produto que corresponde ao **id** </br>e o **status code 200**.</p>|<p>Retorna **status code 404** </br> **mensagem** e o **path** da URI.</p>
 |   get       | /products/{**productName**} | <p>O parametro **productName** é o nome do produto</br> que se deseja pesquisar.</p>| <p>Retorna **status code 404**</br> **mensagem: Produto não encontrado.**</p>
 |   get       | /cart/{**productName**}     | <p>Adiciona um produto pelo nome no carrinho de compras</br>retorna **status code 200**, a quantidade de itens e o total de produtos.</p> |
+|   post      |        /sale/               | <p>Envia um objeto JSON com dados do produto.</p>
 
 ###Arquitetura
 <p>
@@ -37,10 +38,11 @@ e os recursos aclopados e dependentes,</br>a escolha por essa arquitetura é por
 
 ###Modelo Entidade e Relacionamento do Banco de Dados
 <p>
-Estas são as entidades utilizadas ate o momento no projeto Bazar.
+A imagem a abaixo ilustra como o banco de dados está modelado e o 
+ relacionamento entre as entidades que o compõem.
 </p>
 
-![diagram](bazar/database/01-image-db-bazar.png)
+![diagrama de entidade e relacionamentos](bazar/database/image-bd-bazar-02.png "BANCO DE DADOS BAZAR")
 
 
 

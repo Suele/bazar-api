@@ -1,14 +1,17 @@
 package com.bazar.api.bazar.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity(name = "Product")
 @Table(name = "product")
 public class Product {
     @Id
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
+    private Long product_id;
 
     @Column(nullable = false, length = 20)
     private String name_product;
@@ -54,11 +57,14 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @ManyToMany(targetEntity = Sale.class, mappedBy = "items_sale")
+    private Set<Sale> sale = new HashSet<>();
+
     public Product () {
     }
 
-    public Product (Long id, String name_product, Integer quantity, String product_type, String description, Double value_for_sale, List<Provider> provider, List<Brand> brand, Category category) {
-        this.id = id;
+    public Product (Long product_id, String name_product, Integer quantity, String product_type, String description, Double value_for_sale, List<Provider> provider, List<Brand> brand, Category category) {
+        this.product_id = product_id;
         this.name_product = name_product;
         this.quantity = quantity;
         this.product_type = product_type;
@@ -70,53 +76,90 @@ public class Product {
     }
 
     public Long getId () {
-        return id;
+        return product_id;
+    }
+
+    public void setId (Long product_id) {
+        this.product_id = product_id;
     }
 
     public String getName_product () {
         return name_product;
     }
 
+    public void setName_product (String name_product) {
+        this.name_product = name_product;
+    }
+
     public Integer getQuantity () {
         return quantity;
+    }
+
+    public void setQuantity (Integer quantity) {
+        this.quantity = quantity;
     }
 
     public String getProduct_type () {
         return product_type;
     }
 
-    public Double getValue_for_sale () {
-        return value_for_sale;
+    public void setProduct_type (String product_type) {
+        this.product_type = product_type;
     }
 
     public String getDescription () {
         return description;
     }
 
+    public void setDescription (String description) {
+        this.description = description;
+    }
+
+    public Double getValue_for_sale () {
+        return value_for_sale;
+    }
+
+    public void setValue_for_sale (Double value_for_sale) {
+        this.value_for_sale = value_for_sale;
+    }
+
     public List<Provider> getProvider () {
         return provider;
+    }
+
+    public void setProvider (List<Provider> provider) {
+        this.provider = provider;
     }
 
     public List<Brand> getBrand () {
         return brand;
     }
 
+    public void setBrand (List<Brand> brand) {
+        this.brand = brand;
+    }
+
     public Category getCategory () {
         return category;
     }
 
+    public void setCategory (Category category) {
+        this.category = category;
+    }
+
+
     @Override
     public String toString () {
-        return "Product:{" +
-                "id:" + id +
-                ", name_product:'" + name_product + '\'' +
-                ", quantity=:" + quantity +
-                ", product_type=:'" + product_type + '\'' +
-                ", description:'" + description + '\'' +
-                ", value_for_sale:" + value_for_sale +
-                ", provider:" + provider +
-                ", brand:" + brand +
-                ", category:" + category +
+        return "Product{" +
+                "id=" + product_id +
+                ", name_product='" + name_product + '\'' +
+                ", quantity=" + quantity +
+                ", product_type='" + product_type + '\'' +
+                ", description='" + description + '\'' +
+                ", value_for_sale=" + value_for_sale +
+                ", provider=" + provider +
+                ", brand=" + brand +
+                ", category=" + category +
                 '}';
     }
 }

@@ -1,33 +1,31 @@
 package com.bazar.api.bazar.entities;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "Sale")
 @Table(name = "sale")
 public class Sale {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sale_id;
-
-    @Column(nullable = false)
-    private LocalDate sale_date;
 
     @Column(nullable = false)
     private Double total;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,
+    @ManyToMany(targetEntity = Product.class, fetch = FetchType.LAZY, cascade = {
             CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinTable(name = "items_sale", joinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> items_sale;
+    @JoinTable(name = "items", joinColumns = @JoinColumn(name = "sale_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private Set<Product> items_sale = new HashSet<>();
 
     public Sale () {
     }
 
-    public Sale (Long sale_id, Double total, List<Product> items_sale) {
+    public Sale (Long sale_id, Double total) {
         this.sale_id = sale_id;
         this.total = total;
-        this.items_sale = items_sale;
     }
 
     public Long getSale_id () {
@@ -38,14 +36,6 @@ public class Sale {
         this.sale_id = sale_id;
     }
 
-    public LocalDate getSale_date () {
-        return sale_date;
-    }
-
-    private void setSale_date () {
-        this.sale_date = LocalDate.now();
-    }
-
     public Double getTotal () {
         return total;
     }
@@ -54,11 +44,11 @@ public class Sale {
         this.total = total;
     }
 
-    public List<Product> getItems_sale () {
+    public Set<Product> getItems_sale () {
         return items_sale;
     }
 
-    public void setItems_sale (List<Product> items_sale) {
+    public void setItems_sale (Set<Product> items_sale) {
         this.items_sale = items_sale;
     }
 
@@ -66,7 +56,6 @@ public class Sale {
     public String toString () {
         return "Sale{" +
                 "sale_id:" + sale_id +
-                ", sale_date:" + sale_date +
                 ", total:" + total +
                 ", items_sale:" + items_sale +
                 '}';

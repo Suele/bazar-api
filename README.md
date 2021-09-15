@@ -4,8 +4,10 @@
 API para venda de produtos diversos.
 
 ### Cenário
-<p>Em um bazar de produtos é possível encontrar diversos tipos de produtos que podem serem fornecidos<br>
-por diversos fornecedores e esses tendo diversas marcas, então será feita a divisão dos produtos em categorias.</p>
+<p>
+Em um bazar de produtos é possível encontrar diversos tipos de produtos que podem serem fornecidos<br>
+por diversos fornecedores e esses tendo diversas marcas, então será feita a divisão dos produtos em categorias.</br>
+</p>
 
 ### Recursos da API
 - [X] Mostrar todos os produtos disponíveis paginados.

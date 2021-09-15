@@ -9,24 +9,33 @@ import javax.persistence.Table;
 @Table(name = "category")
 public class Category {
     @Id
-    private Long id;
+    @Column(name = "category_id")
+    private Long categoryId;
 
-    @Column(nullable = false, length = 18)
-    private String name;
+    @Column(name = "category_name", nullable = false, length = 19)
+    private String categoryName;
 
     public Category () {
     }
 
-    public Category (Long id, String name) {
-        this.id = id;
-        this.name = name;
+    public Category (Long categoryId, String categoryName) {
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
     }
 
-    public Long getId () {
-        return id;
+    public Long getCategoryId () {
+        return categoryId;
     }
 
-    public String getName () {
-        return name;
+    public String getCategoryName () {
+        return categoryName;
+    }
+
+    @Override
+    public String toString () {
+        return "Category{" +
+                "categoryId:" + categoryId +
+                ", categoryName:'" + categoryName + '\'' +
+                '}';
     }
 }

@@ -9,10 +9,11 @@ import java.util.List;
 @Table(name = "brand")
 public class Brand {
     @Id
-    private Long id;
+    @Column(name = "brand_id", nullable = false)
+    private Long brandId;
 
-    @Column(nullable = true, length = 15)
-    private String name;
+    @Column(name = "brand_name", nullable = true, length = 18)
+    private String brandName;
 
     @ManyToMany(mappedBy = "brand")
     @JsonIgnore
@@ -21,21 +22,30 @@ public class Brand {
     public Brand () {
     }
 
-    public Brand (Long id, String name, List<Product> products) {
-        this.id = id;
-        this.name = name;
+    public Brand (Long brandId, String brandName, List<Product> products) {
+        this.brandId = brandId;
+        this.brandName = brandName;
         this.products = products;
     }
 
-    public Long getId () {
-        return id;
+    public Long getBrandId () {
+        return brandId;
     }
 
-    public String getName () {
-        return name;
+    public String getBrandName () {
+        return brandName;
     }
 
     public List<Product> getProducts () {
         return products;
+    }
+
+    @Override
+    public String toString () {
+        return "Brand{" +
+                "brandId: " + brandId +
+                ", brandName: '" + brandName + '\'' +
+                ", products: " + products +
+                '}';
     }
 }

@@ -8,11 +8,13 @@ import java.util.List;
 @Entity(name = "Provider")
 @Table(name = "provider")
 public class Provider {
-    @Id
-    private Long id;
 
-    @Column(nullable = false, length = 25)
-    private String name;
+    @Id
+    @Column(name = "provider_id", nullable = false)
+    private Long providerId;
+
+    @Column(name = "provider_name", nullable = false, length = 25)
+    private String providerName;
 
     @Column(nullable = false, length = 14)
     private String cnpj;
@@ -24,19 +26,19 @@ public class Provider {
     public Provider () {
     }
 
-    public Provider (Long id, String name, String cnpj, List<Product> products) {
-        this.id = id;
-        this.name = name;
+    public Provider (Long providerId, String providerName, String cnpj, List<Product> products) {
+        this.providerId = providerId;
+        this.providerName = providerName;
         this.cnpj = cnpj;
         this.products = products;
     }
 
-    public Long getId () {
-        return id;
+    public Long getProviderId () {
+        return providerId;
     }
 
-    public String getName () {
-        return name;
+    public String getProviderName () {
+        return providerName;
     }
 
     public String getCnpj () {
@@ -45,5 +47,15 @@ public class Provider {
 
     public List<Product> getProducts () {
         return products;
+    }
+
+    @Override
+    public String toString () {
+        return "Provider{" +
+                "providerId:" + providerId +
+                ", providerName:'" + providerName + '\'' +
+                ", cnpj:'" + cnpj + '\'' +
+                ", products:" + products +
+                '}';
     }
 }

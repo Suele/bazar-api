@@ -10,23 +10,20 @@ import java.util.Set;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
-    private Long product_id;
+    @Column(name = "product_id", nullable = false)
+    private Long productId;
 
-    @Column(nullable = false, length = 20)
-    private String name_product;
+    @Column(name = "product_name", nullable = false, length = 23)
+    private String productName;
 
     @Column(nullable = false, precision = 0)
     private Integer quantity;
 
-    @Column(nullable = false, length = 15)
-    private String product_type;
-
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = 35)
     private String description;
 
-    @Column(nullable = false, precision = (7))
-    private Double value_for_sale;
+    @Column(name = "value_for_sale", nullable = false, precision = (7))
+    private Double valueSale;
 
     /*
     um produto pode pertencer a um ou muitos fornecedores
@@ -63,32 +60,32 @@ public class Product {
     public Product () {
     }
 
-    public Product (Long product_id, String name_product, Integer quantity, String product_type, String description, Double value_for_sale, List<Provider> provider, List<Brand> brand, Category category) {
-        this.product_id = product_id;
-        this.name_product = name_product;
+    public Product (Long productId, String productName, Integer quantity, String description, Double valueSale, List<Provider> provider, List<Brand> brand, Category category, Set<Sale> sale) {
+        this.productId = productId;
+        this.productName = productName;
         this.quantity = quantity;
-        this.product_type = product_type;
         this.description = description;
-        this.value_for_sale = value_for_sale;
+        this.valueSale = valueSale;
         this.provider = provider;
         this.brand = brand;
         this.category = category;
+        this.sale = sale;
     }
 
-    public Long getId () {
-        return product_id;
+    public Long getProductId () {
+        return productId;
     }
 
-    public void setId (Long product_id) {
-        this.product_id = product_id;
+    public void setProductId (Long productId) {
+        this.productId = productId;
     }
 
-    public String getName_product () {
-        return name_product;
+    public String getProductName () {
+        return productName;
     }
 
-    public void setName_product (String name_product) {
-        this.name_product = name_product;
+    public void setProductName (String productName) {
+        this.productName = productName;
     }
 
     public Integer getQuantity () {
@@ -99,14 +96,6 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getProduct_type () {
-        return product_type;
-    }
-
-    public void setProduct_type (String product_type) {
-        this.product_type = product_type;
-    }
-
     public String getDescription () {
         return description;
     }
@@ -115,12 +104,12 @@ public class Product {
         this.description = description;
     }
 
-    public Double getValue_for_sale () {
-        return value_for_sale;
+    public Double getValueSale () {
+        return valueSale;
     }
 
-    public void setValue_for_sale (Double value_for_sale) {
-        this.value_for_sale = value_for_sale;
+    public void setValueSale (Double valueSale) {
+        this.valueSale = valueSale;
     }
 
     public List<Provider> getProvider () {
@@ -147,19 +136,26 @@ public class Product {
         this.category = category;
     }
 
+    public Set<Sale> getSale () {
+        return sale;
+    }
+
+    public void setSale (Set<Sale> sale) {
+        this.sale = sale;
+    }
 
     @Override
     public String toString () {
         return "Product{" +
-                "id=" + product_id +
-                ", name_product='" + name_product + '\'' +
-                ", quantity=" + quantity +
-                ", product_type='" + product_type + '\'' +
-                ", description='" + description + '\'' +
-                ", value_for_sale=" + value_for_sale +
-                ", provider=" + provider +
-                ", brand=" + brand +
-                ", category=" + category +
+                "productId:" + productId +
+                ", productName:'" + productName + '\'' +
+                ", quantity:" + quantity +
+                ", description:'" + description + '\'' +
+                ", valueSale:" + valueSale +
+                ", provider:" + provider +
+                ", brand:" + brand +
+                ", category:" + category +
+                ", sale:" + sale +
                 '}';
     }
 }

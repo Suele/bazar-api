@@ -14,6 +14,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "SELECT m FROM Product m")
     Page<Product> findAllProduct (Pageable pageable);
 
-    @Query(value = "SELECT m FROM Product m WHERE m.name_product LIKE :productName%")
+    @Query(value = "SELECT m FROM Product m WHERE m.productName LIKE :productName%")
     Product findOneProduct(@Param("productName") String productName);
 }

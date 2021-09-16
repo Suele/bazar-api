@@ -19,7 +19,7 @@ public class SaleService {
         Sale sale = new Sale();
         Set<Product> productList = new HashSet<>();
 
-        sale.setTotal(product.getValue_for_sale());
+        sale.setTotal(product.getValueSale());
         productList.add(product);
         sale.setItems_sale(productList);
 

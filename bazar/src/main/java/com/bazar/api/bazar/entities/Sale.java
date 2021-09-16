@@ -9,14 +9,15 @@ import java.util.Set;
 public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long sale_id;
+    @Column(name = "sale_id", nullable = false)
+    private Long saleId;
 
     @Column(nullable = false)
     private Double total;
 
     @ManyToMany(targetEntity = Product.class, fetch = FetchType.LAZY, cascade = {
             CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinTable(name = "items", joinColumns = @JoinColumn(name = "sale_id"),
+    @JoinTable(name = "items_sale", joinColumns = @JoinColumn(name = "sale_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private Set<Product> items_sale = new HashSet<>();
 
@@ -24,16 +25,16 @@ public class Sale {
     }
 
     public Sale (Long sale_id, Double total) {
-        this.sale_id = sale_id;
+        this.saleId = sale_id;
         this.total = total;
     }
 
-    public Long getSale_id () {
-        return sale_id;
+    public Long getSaleId () {
+        return saleId;
     }
 
-    public void setSale_id (Long sale_id) {
-        this.sale_id = sale_id;
+    public void setSaleId (Long saleId) {
+        this.saleId = saleId;
     }
 
     public Double getTotal () {
@@ -55,9 +56,9 @@ public class Sale {
     @Override
     public String toString () {
         return "Sale{" +
-                "sale_id:" + sale_id +
-                ", total:" + total +
-                ", items_sale:" + items_sale +
+                "saleId: " + saleId +
+                ", total: " + total +
+                ", items_sale: " + items_sale +
                 '}';
     }
 }

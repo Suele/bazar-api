@@ -43,9 +43,9 @@ public class Brand {
     @Override
     public String toString () {
         return "Brand{" +
-                "brandId: " + brandId +
-                ", brandName: '" + brandName + '\'' +
-                ", products: " + products +
+                "brandId:" + brandId +
+                ", brandName:'" + brandName + '\'' +
+                ", products:" + products +
                 '}';
     }
 }

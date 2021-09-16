@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductPage extends PagingAndSortingRepository<Product, Long> {
-    @Query(value = "SELECT m FROM Product m WHERE m.name_product LIKE :productName%")
+    @Query(value = "SELECT m FROM Product m WHERE m.productName LIKE :productName%")
     Page<Product> findAllProductName (@Param("productName") String productName, Pageable pageable);
 }

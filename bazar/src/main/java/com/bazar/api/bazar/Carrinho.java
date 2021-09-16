@@ -34,7 +34,7 @@ public class Carrinho {
     public Double getTotal () {
         AtomicReference<Double> total = new AtomicReference<>(0.0);
         this.products.forEach(product -> {
-            total.updateAndGet(v -> v + product.getQuantity() * product.getValue_for_sale());
+            total.updateAndGet(v -> v + product.getQuantity() * product.getValueSale());
         });
         return total.get();
     }

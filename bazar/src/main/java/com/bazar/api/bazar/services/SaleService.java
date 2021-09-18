@@ -1,29 +1,35 @@
 package com.bazar.api.bazar.services;
 
-import com.bazar.api.bazar.entities.Product;
+import com.bazar.api.bazar.Carrinho;
 import com.bazar.api.bazar.entities.Sale;
 import com.bazar.api.bazar.repositories.SaleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.sql.SQLException;
 
 @Service
 public class SaleService {
     @Autowired
     private SaleRepository saleRepository;
+    @Autowired
+    private ProductService productService;
+    private final Sale sale = new Sale();
 
-    public ResponseEntity<Object> AddSale (Product product) {
-        Sale sale = new Sale();
-        Set<Product> productList = new HashSet<>();
-
-        sale.setTotal(product.getValueSale());
-        productList.add(product);
-        sale.setItems_sale(productList);
-
-        saleRepository.save(sale);
+    public ResponseEntity<Object> getItemsCart (Carrinho carrinho) {
+        sale.setItems_sale(carrinho.getProducts());
+        sale.setTotal(carrinho.getTotal());
         return ResponseEntity.ok().body(sale);
+    }
+
+    public ResponseEntity<?> getSale () {
+        if (sale.getTotal() != null) {
+            saleRepository.save(sale);
+            return ResponseEntity.ok().body(sale);
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum produto foi adicionado para compra.");
     }
 }

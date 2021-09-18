@@ -1,9 +1,10 @@
 package com.bazar.api.bazar.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity(name = "Product")
 @Table(name = "product")
@@ -54,13 +55,15 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToMany(targetEntity = Sale.class, mappedBy = "items_sale")
-    private Set<Sale> sale = new HashSet<>();
+    @ManyToMany(fetch = FetchType.LAZY, targetEntity = Sale.class, mappedBy = "items_sale", cascade = {
+            CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+    @JsonIgnore
+    private List<Sale> sale = new ArrayList<>();
 
     public Product () {
     }
 
-    public Product (Long productId, String productName, Integer quantity, String description, Double valueSale, List<Provider> provider, List<Brand> brand, Category category, Set<Sale> sale) {
+    public Product (Long productId, String productName, Integer quantity, String description, Double valueSale, List<Provider> provider, List<Brand> brand, Category category) {
         this.productId = productId;
         this.productName = productName;
         this.quantity = quantity;
@@ -69,7 +72,6 @@ public class Product {
         this.provider = provider;
         this.brand = brand;
         this.category = category;
-        this.sale = sale;
     }
 
     public Long getProductId () {
@@ -136,11 +138,11 @@ public class Product {
         this.category = category;
     }
 
-    public Set<Sale> getSale () {
+    public List<Sale> getSale () {
         return sale;
     }
 
-    public void setSale (Set<Sale> sale) {
+    public void setSale (List<Sale> sale) {
         this.sale = sale;
     }
 
@@ -155,7 +157,6 @@ public class Product {
                 ", provider:" + provider +
                 ", brand:" + brand +
                 ", category:" + category +
-                ", sale:" + sale +
                 '}';
     }
 }

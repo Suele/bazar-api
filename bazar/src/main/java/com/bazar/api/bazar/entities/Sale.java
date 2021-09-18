@@ -1,8 +1,8 @@
 package com.bazar.api.bazar.entities;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "Sale")
 @Table(name = "sale")
@@ -19,7 +19,7 @@ public class Sale {
             CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "items_sale", joinColumns = @JoinColumn(name = "sale_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private Set<Product> items_sale = new HashSet<>();
+    private List<Product> items_sale = new ArrayList<>();
 
     public Sale () {
     }
@@ -45,11 +45,12 @@ public class Sale {
         this.total = total;
     }
 
-    public Set<Product> getItems_sale () {
+    public List<Product> getItems_sale () {
         return items_sale;
     }
 
-    public void setItems_sale (Set<Product> items_sale) {
+    public void setItems_sale (List<Product> items_sale) {
+
         this.items_sale = items_sale;
     }
 

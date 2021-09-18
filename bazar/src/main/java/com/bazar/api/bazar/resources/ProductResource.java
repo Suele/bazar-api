@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Min;
 
@@ -18,7 +16,6 @@ import javax.validation.constraints.Min;
 public class ProductResource {
     @Autowired
     private ProductService productService;
-    private Carrinho carrinho = new Carrinho();
 
     @GetMapping("/products/")
     public ResponseEntity<Page<Product>> products () {
@@ -35,11 +32,8 @@ public class ProductResource {
         return ResponseEntity.ok().body(productService.getAllProductName(productName));
     }
 
-    @GetMapping("/cart/{productName}")
-    public ResponseEntity<Carrinho> addShoppingCart (@PathVariable(value = "productName") String productName) {
-        Product product = productService.getProduct(productName);
-        carrinho.setProducts(product);
-
-        return ResponseEntity.ok().body(carrinho);
+    @PostMapping("/items_cart")
+    public ResponseEntity<Carrinho> itemsCart (@RequestBody Product product) {
+        return ResponseEntity.ok().body(productService.itemsCart(product));
     }
 }

@@ -1,5 +1,6 @@
 package com.bazar.api.bazar.services;
 
+import com.bazar.api.bazar.Carrinho;
 import com.bazar.api.bazar.entities.Product;
 import com.bazar.api.bazar.repositories.ProductPage;
 import com.bazar.api.bazar.repositories.ProductRepository;
@@ -18,6 +19,9 @@ public class ProductService {
     private ProductRepository productRepository;
     @Autowired
     private ProductPage productPage;
+    @Autowired
+    private SaleService saleService;
+    private Carrinho cart = new Carrinho();
 
     public Product getId (Long id) {
         return productRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "O produto de id " + id + " não foi encontrado."));
@@ -41,5 +45,11 @@ public class ProductService {
 
     public Product getProduct (String productName) {
         return productRepository.findOneProduct(productName);
+    }
+
+    public Carrinho itemsCart (Product newProduct) {
+        cart.setProducts(newProduct);
+        saleService.getItemsCart(cart);
+        return cart;
     }
 }

@@ -9,15 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.sql.SQLException;
-
 @Service
 public class SaleService {
+    private final Sale sale = new Sale();
     @Autowired
     private SaleRepository saleRepository;
-    @Autowired
-    private ProductService productService;
-    private final Sale sale = new Sale();
 
     public ResponseEntity<Object> getItemsCart (Carrinho carrinho) {
         sale.setItems_sale(carrinho.getProducts());
@@ -26,9 +22,9 @@ public class SaleService {
     }
 
     public ResponseEntity<?> getSale () {
-        if (sale.getTotal() != null) {
+        if (sale.getTotal() != null && sale.getItems_sale().size() > 0) {
             saleRepository.save(sale);
-            return ResponseEntity.ok().body(sale);
+            return ResponseEntity.ok().body("A sua compra foi realizada com sucesso.");
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum produto foi adicionado para compra.");
     }

@@ -37,21 +37,26 @@ as query strings ou parametros que são utilizadas para filtrar os dados entre o
 |   post      |        /items_cart          | <p>Adiciona produtos no carrinho de compras mostra o total e a quantidade de produtos.</p>|
 
 ### Arquitetura
-
 <p>
 A arquitetura utilizada é a monolítica, tendo os dados centralizados em apenas uma base de dados
-e os recursos aclopados e dependentes,</br>a escolha por essa arquitetura é porque o objetivo é manter a simplicidade e focar no aprendizado. 
+e os recursos aclopados e dependentes,</br>a escolha por essa arquitetura é porque o objetivo é manter
+a simplicidade e focar no aprendizado. 
 </p>
 
 ### Modelo Entidade e Relacionamento do Banco de Dados
-
 <p>
 A imagem a abaixo ilustra como o banco de dados está modelado e o 
  relacionamento entre as entidades que o compõem.
 </p>
 
-![diagrama de entidade e relacionamentos](bazar/database/image-bd-bazar-02.png "BANCO DE DADOS BAZAR")
+![diagrama de entidade e relacionamentos](bazar/database/image-bd-bazar-02.png "BANCO DE DADOS BAZAR-API")
 
+##Tecnologias Utilizadas no Projeto
 
+- Spring Boot
+- PostgreSQL
+- Swagger
+- Flyway
+- Docker
 
-
+O docker é utilizado para rodar um container com o banco de dados PostgreSQL.

@@ -159,4 +159,17 @@ public class Product {
                 ", category:" + category +
                 '}';
     }
+
+    @Override
+    public boolean equals (Object o) {
+        if ((o != null) && ((o instanceof Product))) {
+            Product p = (Product) o;
+            if (this.getProductId() == p.getProductId() && this.productName == p.productName &&
+                    (p.getQuantity() < this.getQuantity() || p.getQuantity() == this.getQuantity()) && this.getValueSale() == p.getValueSale()) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
 }

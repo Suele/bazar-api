@@ -12,19 +12,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Optional;
+
 @Service
 public class ProductService {
-    private Pageable pageable = PageRequest.of(0, 10);
+
+    private final Carrinho cart = new Carrinho();
+    private final Pageable pageable = PageRequest.of(0, 10);
     @Autowired
     private ProductRepository productRepository;
     @Autowired
     private ProductPage productPage;
     @Autowired
     private SaleService saleService;
-    private Carrinho cart = new Carrinho();
 
     public Product getId (Long id) {
-        return productRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "O produto de id " + id + " não foi encontrado."));
+        return productRepository.findById(id).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "O produto de id " + id + " não foi encontrado."));
     }
 
     public Page<Product> getAllProduct () {
@@ -47,9 +51,21 @@ public class ProductService {
         return productRepository.findOneProduct(productName);
     }
 
+    // verifica se um produto existe antes de adicionar no carrinho de compras.
+    public Optional checkProductExists (Product product) {
+        return productRepository.verifyProduct(product.getProductId(), product.getQuantity());
+    }
+
+
     public Carrinho itemsCart (Product newProduct) {
-        cart.setProducts(newProduct);
-        saleService.getItemsCart(cart);
-        return cart;
+        if (newProduct.getProductId() != null && newProduct.getValueSale() != null && newProduct.getQuantity() != null) {
+            if (checkProductExists(newProduct).isPresent()) {
+                cart.setProducts(newProduct);
+                saleService.getItemsCart(cart);
+                return cart;
+            }
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "O Produto selecionado está indisponível.");
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "O seu carrinho de compras esta vaziou.");
     }
 }

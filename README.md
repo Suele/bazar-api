@@ -33,7 +33,7 @@ as query strings ou parametros que são utilizadas para filtrar os dados entre o
 |   get       |          /products/         | <p>Busca todos os produtos páginados.</p>|
 |   get       |    /product/{**id**}        | <p>Busca um produto pelo id.</p>
 |   get       | /products/{**productName**} | <p>Busca produtos pelo nome.</p>
-|   get       |         /items_sale         | <p>Mostra os item já adicionados para a compra </p> |
+|   get       |         /finally_sale       | <p>Mostra os item já adicionados para a compra </p> |
 |   post      |        /items_cart          | <p>Adiciona produtos no carrinho de compras mostra o total e a quantidade de produtos.</p>|
 
 ### Arquitetura

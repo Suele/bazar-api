@@ -15,6 +15,7 @@ public class SaleService {
     private final Sale sale = new Sale();
     @Autowired
     private SaleRepository saleRepository;
+    @Autowired
     private ProductRepository productRepository;
 
     public void getItemsCart (Carrinho carrinho) {
@@ -24,12 +25,16 @@ public class SaleService {
         }
     }
 
+    private void updateProduct(){
+        //TODO: adicionar for para se tiver mais de um produto a lista ser percorrida.
+        productRepository.updateProduct(sale.getItems_sale().get(0).getProductId(), sale.getItems_sale().get(0).getQuantity());
+    }
+
 
     public ResponseEntity<?> finallySale () {
         if (sale.getTotal() != null && sale.getItems_sale().size() > 0) {
-            //TODO: antes de salvar a compra precisa verificar a quantidade disponível.
-
             saleRepository.save(sale);
+             this.updateProduct();
             return ResponseEntity.ok().body("Compra finalizada com sucesso.");
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum produto foi adicionado para compra.");

@@ -11,22 +11,21 @@ Em um bazar de produtos é possível encontrar diversos tipos de produtos que po
 por diversos fornecedores e esses tendo diversas marcas, então será feita a divisão dos produtos em categorias.</br>
 </p>
 
-### Recursos da API
+### Funcionalidades prontas
 
 - [X] Mostrar todos os produtos disponíveis paginados.
 - [X] Buscar um produto pelo id.
 - [X] Buscar um produto pelo nome.
-- [X] Adiciona produtos no carrinho de compras, mostra o total e a quantidade.
-- [ ] Remove um produto do carrinho.
-- [ ] Realizar uma venda local.
-- [ ] Realizar uma venda para um cliente online.(aqui entra outras funcionalidades como login,
-  </br>adicionar e remover itens do carrinho de compras, ...).
-  </br>**.... pensando em mais recursos.**
+- [X] Adiciona produtos no carrinho de compras, mostra o total e a quantidade dos produtos.
+- [X] Realizar a venda dos produtos adicionados no carrinho de compras.
+- [X] Atualiza a quantidade de produto disponível após a realização da venda.
+
+
 
 ### Métodos HTTP utilizados na API
 
 <p>Um quadro simples onde é mostrado os métodos HTTP utilizados, a URI para acessar os recursos disponíveis,<br>
-as query strings ou parametros que são utilizadas para filtrar os dados entre outras funções.</p> 
+as query strings ou parameters que são utilizadas para filtrar os dados entre outras funções.</p> 
 
 | Método HTTP |          URI                |                O que faz?                                                                                          | Caso o recurso não seja encontrado
 |-------------|-----------------------------|--------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|

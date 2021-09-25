@@ -13,14 +13,15 @@ por diversos fornecedores e esses tendo diversas marcas, então será feita a di
 
 ### Funcionalidades prontas
 
-- [X] Mostrar todos os produtos disponíveis paginados.
+- [X] Mostra todos os produtos disponíveis.
 - [X] Buscar um produto pelo id.
-- [X] Buscar um produto pelo nome.
+- [X] Busca produto pelo nome.
 - [X] Adiciona produtos no carrinho de compras, mostra o total e a quantidade dos produtos.
-- [X] Realizar a venda dos produtos adicionados no carrinho de compras.
-- [X] Atualiza a quantidade de produto disponível após a realização da venda.
+- [X] Realiza a venda dos produtos adicionados no carrinho de compras.
+- [X] Atualiza a quantidade do produto após a finalização da venda.
 
-
+###Novas Funcionalidades
+-[ ] Pagamento por cartão de crédito.
 
 ### Métodos HTTP utilizados na API
 
@@ -29,7 +30,7 @@ as query strings ou parameters que são utilizadas para filtrar os dados entre o
 
 | Método HTTP |          URI                |                O que faz?                                                                                          | Caso o recurso não seja encontrado
 |-------------|-----------------------------|--------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-|   get       |          /products/         | <p>Busca todos os produtos páginados.</p>|
+|   get       |          /products/         | <p>Busca todos os produtos paginados.</p>|
 |   get       |    /product/{**id**}        | <p>Busca um produto pelo id.</p>
 |   get       | /products/{**productName**} | <p>Busca produtos pelo nome.</p>
 |   get       |         /finally_sale       | <p>Mostra os item já adicionados para a compra </p> |

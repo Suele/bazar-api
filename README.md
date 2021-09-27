@@ -49,7 +49,7 @@ A imagem a abaixo ilustra como o banco de dados está modelado e o
  relacionamento entre as entidades que o compõem.
 </p>
 
-![diagrama de entidade e relacionamentos](bazar/database/image-bd-bazar-02.png "BANCO DE DADOS BAZAR-API")
+![diagrama de entidade e relacionamentos](bazar/database/image-bd-bazar-03.png "BANCO DE DADOS BAZAR-API")
 
 ##Tecnologias Utilizadas no Projeto
 

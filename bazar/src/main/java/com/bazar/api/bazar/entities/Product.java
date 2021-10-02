@@ -1,7 +1,5 @@
 package com.bazar.api.bazar.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,15 +53,13 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToMany(fetch = FetchType.LAZY, targetEntity = Sale.class, mappedBy = "items_sale", cascade = {
-            CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
-    @JsonIgnore
-    private List<Sale> sale = new ArrayList<>();
+    @OneToMany(mappedBy = "product")
+    private List<ItemsSale> sale = new ArrayList<>();
 
-    public Product () {
+    public Product() {
     }
 
-    public Product (Long productId, String productName, Integer quantity, String description, Double valueSale, List<Provider> provider, List<Brand> brand, Category category) {
+    public Product(Long productId, String productName, Integer quantity, String description, Double valueSale, List<Provider> provider, List<Brand> brand, Category category) {
         this.productId = productId;
         this.productName = productName;
         this.quantity = quantity;
@@ -74,80 +70,80 @@ public class Product {
         this.category = category;
     }
 
-    public Long getProductId () {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId (Long productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 
-    public String getProductName () {
+    public String getProductName() {
         return productName;
     }
 
-    public void setProductName (String productName) {
+    public void setProductName(String productName) {
         this.productName = productName;
     }
 
-    public Integer getQuantity () {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity (Integer quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public String getDescription () {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription (String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public Double getValueSale () {
+    public Double getValueSale() {
         return valueSale;
     }
 
-    public void setValueSale (Double valueSale) {
+    public void setValueSale(Double valueSale) {
         this.valueSale = valueSale;
     }
 
-    public List<Provider> getProvider () {
+    public List<Provider> getProvider() {
         return provider;
     }
 
-    public void setProvider (List<Provider> provider) {
+    public void setProvider(List<Provider> provider) {
         this.provider = provider;
     }
 
-    public List<Brand> getBrand () {
+    public List<Brand> getBrand() {
         return brand;
     }
 
-    public void setBrand (List<Brand> brand) {
+    public void setBrand(List<Brand> brand) {
         this.brand = brand;
     }
 
-    public Category getCategory () {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory (Category category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
-    public List<Sale> getSale () {
+    public List<ItemsSale> getSale() {
         return sale;
     }
 
-    public void setSale (List<Sale> sale) {
+    public void setSale(List<ItemsSale> sale) {
         this.sale = sale;
     }
 
     @Override
-    public String toString () {
+    public String toString() {
         return "Product{" +
                 "productId:" + productId +
                 ", productName:'" + productName + '\'' +
@@ -161,14 +157,11 @@ public class Product {
     }
 
     @Override
-    public boolean equals (Object o) {
+    public boolean equals(Object o) {
         if ((o != null) && ((o instanceof Product))) {
             Product p = (Product) o;
-            if (this.getProductId() == p.getProductId() && this.productName == p.productName &&
-                    (p.getQuantity() < this.getQuantity() || p.getQuantity() == this.getQuantity()) && this.getValueSale() == p.getValueSale()) {
-                return true;
-            }
-            return false;
+            return this.getProductId() == p.getProductId() && this.productName == p.productName &&
+                    (p.getQuantity() < this.getQuantity() || p.getQuantity() == this.getQuantity()) && this.getValueSale() == p.getValueSale();
         }
         return false;
     }

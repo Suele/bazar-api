@@ -73,8 +73,8 @@ public class ProductService {
         }
     }
 
-    public List<Product> getCart() {
-        return cart.getProducts();
+    public Cart getCart() {
+        return cart;
     }
 
     public ItemsSale finallySale() {

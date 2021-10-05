@@ -1,5 +1,6 @@
 package com.bazar.api.bazar.resources;
 
+import com.bazar.api.bazar.Cart;
 import com.bazar.api.bazar.entities.ItemsSale;
 import com.bazar.api.bazar.entities.Product;
 import com.bazar.api.bazar.services.ProductService;
@@ -12,7 +13,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Min;
-import java.util.List;
 
 @Api(tags = "Produto")
 @RestController
@@ -47,7 +47,7 @@ public class ProductResource {
 
     @ApiOperation(value = "Mostra os itens do carrinho de compras.")
     @GetMapping("/product_cart")
-    public ResponseEntity<List<Product>> getCart() {
+    public ResponseEntity<Cart> getCart() {
         return ResponseEntity.ok().body(productService.getCart());
     }
 

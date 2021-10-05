@@ -1,5 +1,7 @@
 package com.bazar.api.bazar.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +56,7 @@ public class Product {
     private Category category;
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private List<ItemsSale> sale = new ArrayList<>();
 
     public Product() {

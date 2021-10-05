@@ -1,7 +1,8 @@
 package com.bazar.api.bazar;
 
-import com.bazar.api.bazar.entities.ItemsSale;
 import com.bazar.api.bazar.entities.Product;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,30 +13,23 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 
 public class Cart {
-    private final ItemsSale itemSale;
-    private final ItemsSale ItemsProduct;
-    private final List<Product> listProductAndSale;
     private final List<Product> products;
+    private final Product product;
 
     public Cart() {
-        this.ItemsProduct = new ItemsSale();
-        this.itemSale = new ItemsSale();
-        this.listProductAndSale = new ArrayList<Product>();
+        this.product = new Product();
         this.products = new ArrayList<>();
     }
 
-    public void addNewProduct(Product product) {
-        this.ItemsProduct.setProduct(product);
-        this.products.add(this.ItemsProduct.getProduct());
-
-    }
-
     public List<Product> getProducts() {
-        return this.products;
+        if (!this.products.isEmpty()) {
+            return this.products;
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Seu carrinho está vazio.");
     }
 
-    public List<Product> getSale() {
-        return this.listProductAndSale.addAll(this.products);
+    public void setProducts(Product product) {
+        this.products.add(product);
     }
 
     public Double getTotal() {
@@ -56,11 +50,10 @@ public class Cart {
 
     @Override
     public String toString() {
-        return "Cart{" +
-                "itemSale=" + itemSale +
-                ", ItemsProduct=" + ItemsProduct +
-                ", listProductAndSale=" + listProductAndSale +
-                ", products=" + products +
+        return "Carrinho{" +
+                "products:" + this.products +
+                ",Itens:" + this.getQuantidadeDeItens() +
+                ",Total:" + this.getTotal() +
                 '}';
     }
 }

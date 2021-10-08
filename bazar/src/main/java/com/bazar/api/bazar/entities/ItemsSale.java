@@ -60,16 +60,8 @@ public class ItemsSale {
         return quantitySale;
     }
 
-    public void setQuantitySale(Integer quantitySale) {
-        this.quantitySale = quantitySale;
-    }
-
     public Double getUnitaryValue() {
         return unitaryValue;
-    }
-
-    public void setUnitaryValue(Double unitaryValue) {
-        this.unitaryValue = unitaryValue;
     }
 
     @Override

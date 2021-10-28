@@ -18,12 +18,6 @@ por diversos fornecedores e esses tendo diversas marcas, então será feita a di
 - [X] Realiza a venda dos produtos adicionados no carrinho de compras.
 - [X] Atualiza a quantidade do produto após a finalização da venda.
 
-<p>
-<b>Observação</b>: Os produtos adicionados no carrinho de compras só existem em memoria ou seja durante a execução</br>
-do programa. Os produtos que estiverem no carrinho de compras são adicionados para a compra</br> 
-e em seguida é atualizada a quantidade do produtos que foi comprado.
-</p>
-
 ###Novas Funcionalidades
 - [ ] Forma de pagamento.
 
@@ -57,10 +51,9 @@ tipo de relacionamento entre as entidades.
 ![diagrama de entidade e relacionamentos](bazar/database/image-bd-bazar-03.png "BANCO DE DADOS BAZAR-API")
 
 ##Tecnologias Utilizadas no Projeto
-- Spring Boot
-- PostgreSQL
-- Swagger
-- Flyway
-- Docker
-
-O banco de dados postgresql é executado em um container docker.
+- Spring Boot - auxilia na inicialização de projetos que utilizam java. porque todas as configurações e dependencias 
+que um projeto java precisa para começar a funcionar é oferecido por ele.
+- PostgreSQL - banco de dados relacional opensource.
+- Swagger - documentar APIs.
+- Flyway - para utilizar migrations no banco de dados
+- Container Docker - Onde é executado o banco de dados PostgreSQL.

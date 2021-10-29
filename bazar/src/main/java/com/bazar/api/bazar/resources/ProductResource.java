@@ -12,47 +12,48 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Min;
+import java.util.Optional;
 
 @Api(tags = "Produto")
 @RestController
 @Validated
+@RequestMapping("/product")
 public class ProductResource {
     @Autowired
     private ProductService productService;
 
     @ApiOperation(value = "Lista todos os produtos")
-    @GetMapping("/products/")
+    @GetMapping("/list")
     public ResponseEntity<Page<Product>> products() {
         return ResponseEntity.ok().body(productService.getAllProduct());
     }
 
-    @ApiOperation(value = "Busca um produto pelo id")
-    @GetMapping("/product/{id}")
-    public ResponseEntity<Product> getProductId(@PathVariable(value = "id") @Min(value = 1, message = "id invalido.") Long id) {
-        return ResponseEntity.ok().body(productService.getId(id));
+    @ApiOperation(value = "Busca produto pelo id")
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Product>> getProductId(@PathVariable(value = "id") Long id) {
+        return productService.getId(id);
     }
 
     @ApiOperation(value = "Busca produto por nome")
-    @GetMapping("/products/{productName}")
+    @GetMapping("/search/{productName}")
     public ResponseEntity<?> getProductName(@PathVariable(value = "productName") String productName) {
         return ResponseEntity.ok().body(productService.getAllProductName(productName));
     }
 
     @ApiOperation(value = "Adiciona produtos no carrinho de compras.")
-    @PostMapping("/add_items_cart")
+    @PostMapping("/add")
     public void addItemsCart(@RequestBody Product product) {
         productService.addItemsCart(product);
     }
 
     @ApiOperation(value = "Mostra os itens do carrinho de compras.")
-    @GetMapping("/product_cart")
+    @GetMapping("/cart")
     public ResponseEntity<Cart> getCart() {
         return ResponseEntity.ok().body(productService.getCart());
     }
 
     @ApiOperation(value = "Pega os produtos que estão no carrinho e efetua a compra.")
-    @GetMapping("/finally_sale")
+    @GetMapping("/sale")
     public ResponseEntity<ItemsSale> newSale() {
         return ResponseEntity.ok().body(productService.finallySale());
     }

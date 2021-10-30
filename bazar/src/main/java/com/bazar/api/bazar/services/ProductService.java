@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -34,9 +35,9 @@ public class ProductService {
     @Autowired
     private ItemsSaleRepository itemsSaleRepository;
 
-    public Product getId(Long id) {
-        return productRepository.findById(id).orElseThrow(() ->
-                new ResponseStatusException(HttpStatus.NOT_FOUND, "O produto de id " + id + " não foi encontrado."));
+    public ResponseEntity<Optional<Product>> getId(Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        return product.isPresent() ? ResponseEntity.ok().body(product) : ResponseEntity.notFound().build();
     }
 
     public Page<Product> getAllProduct() {
@@ -98,5 +99,9 @@ public class ProductService {
 
     private void updateProduct() {
         productRepository.updateProduct(cart.getProducts().get(0).getProductId(), cart.getProducts().get(0).getQuantity());
+    }
+
+    public Product newProduct(Product product) {
+        return productRepository.save(product);
     }
 }

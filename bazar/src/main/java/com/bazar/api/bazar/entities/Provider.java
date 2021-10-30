@@ -3,11 +3,12 @@ package com.bazar.api.bazar.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity(name = "Provider")
 @Table(name = "provider")
-public class Provider {
+public class Provider implements Serializable {
 
     @Id
     @Column(name = "provider_id", nullable = false)

@@ -24,7 +24,7 @@ public class ProductResource {
     private ProductService productService;
 
     @ApiOperation(value = "Lista todos os produtos")
-    @GetMapping("/list")
+    @GetMapping
     public ResponseEntity<Page<Product>> products() {
         return ResponseEntity.ok().body(productService.getAllProduct());
     }
@@ -42,7 +42,7 @@ public class ProductResource {
     }
 
     @ApiOperation(value = "Adiciona produtos no carrinho de compras.")
-    @PostMapping("/add")
+    @PostMapping
     public void addItemsCart(@RequestBody Product product) {
         productService.addItemsCart(product);
     }
@@ -59,6 +59,7 @@ public class ProductResource {
         return ResponseEntity.ok().body(productService.finallySale());
     }
 
+    @ApiOperation(value = "Adiciona novo produto")
     @PostMapping("/new")
     public ResponseEntity<Product> newProduct(@RequestBody Product product) {
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.newProduct(product));
